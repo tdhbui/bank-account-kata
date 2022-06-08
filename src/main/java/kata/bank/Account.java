@@ -15,7 +15,7 @@ public class Account {
   }
 
   public void withdraw(int amount) {
-
+    transactionRepo.postTransaction(new Transaction(amount, clock.currentTime(), TransactionType.DEBIT));
   }
 
   public void printStatement() {

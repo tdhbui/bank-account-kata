@@ -28,4 +28,16 @@ public class AccountShould {
     Transaction depositTransaction = new Transaction(amount, timestamp, TransactionType.CREDIT);
     verify(transactionRepo).postTransaction(depositTransaction);
   }
+
+  @Test
+  public void post_withdrawal() {
+    int amount = 200;
+    LocalDateTime timestamp = LocalDateTime.now();
+    when(clock.currentTime()).thenReturn(timestamp);
+    Account account = new Account(transactionRepo, clock);
+    account.withdraw(amount);
+
+    Transaction withdrawalTransaction = new Transaction(amount, timestamp, TransactionType.DEBIT);
+    verify(transactionRepo).postTransaction(withdrawalTransaction);
+  }
 }
