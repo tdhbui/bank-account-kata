@@ -24,6 +24,14 @@ public class Transaction {
     return timestamp;
   }
 
+  public TransactionType getType() {
+    return type;
+  }
+
+  public int getBalance() {
+    return balance;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

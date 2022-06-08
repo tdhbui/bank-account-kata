@@ -34,9 +34,9 @@ public class BankAccountAcceptanceTest {
     account.deposit((2000));
     account.printStatement();
     verify(console).print("Operation || Date || Amount || Balance\n" +
-        "Credit || 01/01/2022 || 1000 || 1000\n" +
-        "Debit  || 05/01/2022 || 500  || 500\n" +
-        "Credit || 15/01/2022 || 2000 || 2500\n");
+        "CREDIT || 15/01/2022 || 2000 || 3500\n" +
+        "DEBIT || 05/01/2022 || 500 || 500\n" +
+        "CREDIT || 01/01/2022 || 1000 || 1000");
   }
 
 }
