@@ -29,7 +29,8 @@ public class AccountShould {
     Account account = new Account(transactionRepo, clock, statement);
     account.deposit(amount);
 
-    Transaction depositTransaction = new Transaction(amount, timestamp, TransactionType.CREDIT);
+    Transaction depositTransaction = new Transaction(amount, timestamp, TransactionType.CREDIT,
+        amount);
     verify(transactionRepo).postTransaction(depositTransaction);
   }
 
@@ -41,7 +42,8 @@ public class AccountShould {
     Account account = new Account(transactionRepo, clock, statement);
     account.withdraw(amount);
 
-    Transaction withdrawalTransaction = new Transaction(amount, timestamp, TransactionType.DEBIT);
+    Transaction withdrawalTransaction = new Transaction(amount, timestamp, TransactionType.DEBIT,
+        -amount);
     verify(transactionRepo).postTransaction(withdrawalTransaction);
   }
 
@@ -56,6 +58,6 @@ public class AccountShould {
   }
 
   private Transaction createTransaction(int amount, TransactionType type) {
-    return new Transaction(amount, LocalDateTime.now(), type);
+    return new Transaction(amount, LocalDateTime.now(), type, 0);
   }
 }

@@ -13,13 +13,13 @@ public class Statement {
   }
 
   public void printStatement(List<Transaction> transactions) {
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Operation || Date || Amount || Balance");
+    StringBuilder statement = new StringBuilder();
+    statement.append("Operation || Date || Amount || Balance");
 
     transactions.forEach(transaction -> {
-      stringBuilder.append("\n");
-      stringBuilder.append(formatter.format(transaction));
+      statement.append("\n");
+      statement.append(formatter.format(transaction));
     });
-    console.print(stringBuilder.toString());
+    console.print(statement.toString());
   }
 }

@@ -16,8 +16,10 @@ public class TransactionRepoShould {
 
   @Test
   public void return_all_posted_transactions() {
-    Transaction transaction1 = new Transaction(100, LocalDateTime.now(), TransactionType.CREDIT);
-    Transaction transaction2 = new Transaction(50, LocalDateTime.now(), TransactionType.DEBIT);
+    Transaction transaction1 = new Transaction(100, LocalDateTime.now(), TransactionType.CREDIT,
+        0);
+    Transaction transaction2 = new Transaction(50, LocalDateTime.now(), TransactionType.DEBIT,
+        0);
     transactionRepo.postTransaction(transaction1);
     transactionRepo.postTransaction(transaction2);
     assert(transactionRepo.findAllTransactions()).containsAll(asList(transaction1, transaction2));

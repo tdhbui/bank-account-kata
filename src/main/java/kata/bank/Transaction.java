@@ -8,11 +8,16 @@ public class Transaction {
   private final int amount;
   private final LocalDateTime timestamp;
   private final TransactionType type;
-
-  public Transaction(int amount, LocalDateTime timestamp, TransactionType type) {
+  private final int balance;
+  public Transaction(int amount, LocalDateTime timestamp, TransactionType type, int balance) {
     this.amount = amount;
     this.timestamp = timestamp;
     this.type = type;
+    this.balance = balance;
+  }
+
+  public int getAmount() {
+    return amount;
   }
 
   @Override
@@ -24,11 +29,12 @@ public class Transaction {
       return false;
     }
     Transaction that = (Transaction) o;
-    return amount == that.amount && timestamp.equals(that.timestamp) && type == that.type;
+    return amount == that.amount && balance == that.balance && timestamp.equals(that.timestamp)
+        && type == that.type;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, timestamp, type);
+    return Objects.hash(amount, timestamp, type, balance);
   }
 }
