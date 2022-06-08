@@ -2,7 +2,9 @@ package kata.bank;
 
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,7 +20,12 @@ public class BankAccountAcceptanceTest {
 
   @Test
   void print_statement_showing_all_transactions() {
-    Account account = new Account();
+    TransactionRepo transactionRepo = new TransactionRepo();
+    when(clock.currentTime())
+        .thenReturn(LocalDateTime.of(2022, 1, 1, 0, 0))
+        .thenReturn(LocalDateTime.of(2022, 1, 5, 0, 0))
+        .thenReturn(LocalDateTime.of(2022, 1, 15, 0, 0));
+    Account account = new Account(transactionRepo, clock);
     account.deposit(1000);
     account.withdraw(500);
     account.deposit((2000));
