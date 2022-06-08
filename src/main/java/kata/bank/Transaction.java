@@ -20,6 +20,10 @@ public class Transaction {
     return amount;
   }
 
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

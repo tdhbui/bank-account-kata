@@ -1,5 +1,6 @@
 package kata.bank;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Statement {
@@ -16,7 +17,9 @@ public class Statement {
     StringBuilder statement = new StringBuilder();
     statement.append("Operation || Date || Amount || Balance");
 
-    transactions.forEach(transaction -> {
+    transactions.stream()
+        .sorted(Comparator.comparing(Transaction::getTimestamp).reversed())
+        .forEach(transaction -> {
       statement.append("\n");
       statement.append(formatter.format(transaction));
     });
