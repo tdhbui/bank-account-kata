@@ -21,11 +21,13 @@ public class BankAccountAcceptanceTest {
   @Test
   void print_statement_showing_all_transactions() {
     TransactionRepo transactionRepo = new TransactionRepo();
+    Statement statement = new Statement();
     when(clock.currentTime())
         .thenReturn(LocalDateTime.of(2022, 1, 1, 0, 0))
         .thenReturn(LocalDateTime.of(2022, 1, 5, 0, 0))
         .thenReturn(LocalDateTime.of(2022, 1, 15, 0, 0));
-    Account account = new Account(transactionRepo, clock);
+
+    Account account = new Account(transactionRepo, clock, statement);
     account.deposit(1000);
     account.withdraw(500);
     account.deposit((2000));
