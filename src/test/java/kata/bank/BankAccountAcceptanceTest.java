@@ -21,7 +21,7 @@ public class BankAccountAcceptanceTest {
   @Test
   void print_statement_showing_all_transactions() {
     TransactionRepo transactionRepo = new TransactionRepo();
-    Statement statement = new Statement();
+    Statement statement = new Statement(console);
     when(clock.currentTime())
         .thenReturn(LocalDateTime.of(2022, 1, 1, 0, 0))
         .thenReturn(LocalDateTime.of(2022, 1, 5, 0, 0))
